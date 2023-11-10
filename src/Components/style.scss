@@ -1,0 +1,32 @@
+.white-toolbar {
+    background-color: white;
+    /* Add any other styles you want for the white toolbar */
+}  
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionFixed.mui-fixed.css-49ifcl-MuiPaper-root-MuiAppBar-root .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 8px; /* Adjust the margin as needed */
+    width: 24px; /* Adjust the width and height as needed */
+    height: 24px;
+    border-radius: 50%; /* If you want to make it round */
+  }
+  .four-box-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Divide into 2 columns */
+    grid-template-rows: repeat(2, 1fr); /* Divide into 2 rows */
+    height: 100vh; /* 100% viewport height */
+  
+    /* Adjust styles for the container if needed */
+  }
+  
+  .box {
+    border: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+
+  }
+  
+  
