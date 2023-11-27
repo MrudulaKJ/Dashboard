@@ -1,37 +1,32 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
   Grid,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Button,
   Paper,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-} from "@mui/material";
-import WaveGraph from "./Chart";
-import BarGraph from "./BarGraph";
-import SideBar from "./SideBar";
+} from '@mui/material';
+import WaveGraph from './Chart';
+import BarGraph from './BarGraph';
+import SideBar from './SideBar';
+import AccountWishlist from './AccountWishlist';
 
 const containerStyle = {
-  display: "flex",
+  display: 'flex',
 };
 
 const contentStyle = {
-  marginLeft: "300px", // Adjust this value to match the sidebar width
-  width: "calc(100% - 350px)", // Subtract the sidebar width from 100%
-  marginTop:"180px"
+  marginLeft: '300px',
+  width: 'calc(100% - 350px)',
+  marginTop: '180px',
 };
 
 const Dashboard = () => {
   const [randomData, setRandomData] = useState(false);
-  const [manage, setManage] = useState("option1");
-  const [months, setMonths] = useState("jan");
   const [openModal, setOpenModal] = useState(false);
 
   const handleRandomizeData = () => {
@@ -55,45 +50,36 @@ const Dashboard = () => {
       <div style={contentStyle}>
         <Box p={2} bgcolor="background.paper" boxShadow={4}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Paper elevation={3} style={{ padding: "36px" }}>
+            <Grid item xs={12} md={6} lg={6}>
+              <Paper elevation={3} style={{ padding: '36px', height: '400px', width: '100%' }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={4}>
-                    <Typography variant="h6">Checking Account</Typography>
+                    <Typography variant="subtitle1">Checking Account</Typography>
                   </Grid>
-                  <Grid item xs={6} md={4}>
-                    <Button onClick={handleRandomizeData}>Manage</Button>
+                  <Grid item xs={6} md={4} textAlign="center">
+                    <Button onClick={handleRandomizeData} style={{ marginLeft: '13rem' }}>
+                      Manage
+                    </Button>
                   </Grid>
-                  <Grid item xs={6} md={4}>
-                    <FormControl fullWidth>
-                      <InputLabel id="months-label">Months</InputLabel>
-                      <Select
-                        labelId="months-label"
-                        id="months-select"
-                        value={months}
-                        onChange={(e) => setMonths(e.target.value)}
-                      >
-                        <MenuItem value="jan">January</MenuItem>
-                        <MenuItem value="feb">February</MenuItem>
-                        <MenuItem value="mar">March</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
+                  <Grid item xs={6} md={4}></Grid>
                 </Grid>
                 <WaveGraph randomData={randomData} />
               </Paper>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              <Paper elevation={3} style={{ padding: "36px" }}>
-                <Typography variant="h6">
+            <Grid item xs={12} md={6} lg={6}>
+              <Paper elevation={3} style={{ padding: '36px', height: '400px', width: '100%' }}>
+                <Typography variant="h8"  >
                   Invoices
-                  <Button onClick={handleOpenModal}>
+                  <Button onClick={handleOpenModal} style={{ marginLeft: '13rem' }}>
                     New Sales Invoice
                   </Button>
                 </Typography>
                 <BarGraph data={barGraphData} />
               </Paper>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+            <AccountWishlist/>
             </Grid>
           </Grid>
 

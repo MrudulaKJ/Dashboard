@@ -1,13 +1,10 @@
-
-
-// WaveGraph.js
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 const WaveGraph = ({ randomData }) => {
   const svgRef = useRef();
   const xAxisRef = useRef();
-  const [data, setData] = useState(generateStaticData());
+  const [data, setData] = useState(generateRandomData());
 
   useEffect(() => {
     if (randomData) {
@@ -21,17 +18,21 @@ const WaveGraph = ({ randomData }) => {
     const svg = d3.select(svgRef.current);
     const xAxis = d3.select(xAxisRef.current);
 
-    const xScale = d3.scaleLinear().domain([9, 18]).range([0, 300]);
-    const yScale = d3.scaleLinear().domain([0, 100]).range([150, 0]);
+    const xScale = d3
+      .scaleBand()
+      .domain(data.map((_, i) => 10 + i))
+      .range([0, 300])
+      .padding(0.1);
+
+    const yScale = d3.scaleLinear().domain([0, d3.max(data)]).range([150, 0]);
 
     const line = d3
       .line()
-      .x((d, i) => xScale(9 + i))
+      .x((_, i) => xScale(10 + i) + xScale.bandwidth() / 2)
       .y((d) => yScale(d))
       .curve(d3.curveBasis);
 
-    svg.selectAll('path').remove();
-    xAxis.selectAll('*').remove();
+    svg.selectAll('*').remove();
 
     svg
       .append('path')
@@ -41,7 +42,8 @@ const WaveGraph = ({ randomData }) => {
       .attr('stroke', 'green')
       .attr('stroke-width', 2);
 
-    const xAxisGenerator = d3.axisBottom(xScale).ticks(10);
+    const xAxisGenerator = d3.axisBottom(xScale);
+    xAxis.selectAll('*').remove();
     xAxis.call(xAxisGenerator);
   }, [data]);
 
@@ -50,17 +52,13 @@ const WaveGraph = ({ randomData }) => {
   }
 
   function generateRandomData() {
-    return Array.from({ length: 10 }, () => Math.random() * 50 + 50);
+    return Array.from({ length: 7 }, () => Math.random() * 50 + 50);
   }
 
   return (
     <div>
-    <svg ref={svgRef} width="400" height="150"></svg>
-    <div ref={xAxisRef} >
-      {/* Add your desired CSS styles here */}
-      X-Axis
+      <svg ref={svgRef} width="400" height="150" style={{margin:"7rem"}}></svg>
     </div>
-  </div>
   );
 };
 

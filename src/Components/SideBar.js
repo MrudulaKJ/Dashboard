@@ -11,12 +11,13 @@ import {
 } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon"; // Make sure you have this import
+import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import '../Components/style.scss';
-import Assiduus from '../images/assiduus.jpeg';
+import PersonIcon from "@mui/icons-material/Person"; 
+
+import "../Components/style.scss";
 
 const drawerWidth = 240;
 
@@ -25,9 +26,9 @@ function SideBar() {
     { text: "Dashboard", icon: <InboxIcon /> },
     { text: "Accounts", icon: <MailIcon /> },
     { text: "Payroll", icon: <InboxIcon /> },
-    { text: "Reports", icon: <MailIcon /> },
+    { text: "Reports", icon: <PersonIcon /> },
     { text: "Advisor", icon: <MailIcon /> },
-    { text: "Contacts", icon: <MailIcon /> },
+    { text: "Contacts", icon: <PersonIcon /> },
   ];
 
   const drawer = (
@@ -48,8 +49,8 @@ function SideBar() {
   );
 
   return (
-    <Box sx={{ display: "flex" }}  >
-      <CssBaseline  />
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
@@ -57,14 +58,9 @@ function SideBar() {
           ml: `${drawerWidth}px`,
         }}
       >
-     
-        <Toolbar className="white-toolbar" >
-        {/* <img src={Assiduus} alt="Inbox"  /> */}
-
-        </Toolbar>
+        <Toolbar className="white-toolbar"></Toolbar>
       </AppBar>
       <Drawer
-      
         variant="permanent"
         sx={{
           display: { xs: "none", sm: "block" },
